@@ -40,4 +40,39 @@ public class GirlController {
         return girlRepository.save(girl);
 
     }
+
+    /**
+     * 查询一个女生
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/girls/{id}")
+    public Girl girlFindOne(@PathVariable("id") Integer id) {
+        return girlRepository.findOne(id);
+    }
+
+    @PutMapping(value = "/girls/{id}")
+    public Girl girlupdate(@PathVariable("id") Integer id,
+                           @RequestParam("cpuSize") String cpuSize,
+                           @RequestParam("age") Integer age) {
+        Girl g = new Girl();
+        g.setId(id);
+        g.setCpuSize(cpuSize);
+        g.setAge(age);
+        return girlRepository.save(g);
+
+    }
+
+    //PathVariable是获得URL中的数据
+    //RequestParam获得参数中的值
+
+
+    @DeleteMapping(value = "/girls/{id}")
+    public void del(@PathVariable("id") Integer id) {
+
+        girlRepository.delete(id);
+
+    }
+
 }
